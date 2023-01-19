@@ -17,15 +17,19 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Test execution - Example application << parameters.example-app-name >> 
+          name: Run example application << parameters.example-app-name >> 
           command: |
             # Execute application test_entrypoint.sh in background. 
             chmod u+x << parameters.path >>/test_entrypoint.sh
             cd << parameters.path >> 
             ./test_entrypoint.sh &        
-            
-            # Execute gherkin tests for given application 
-            cd ~/test/
+             
+      - checkout:
+          path: ~/project/test/
+      - run: 
+          name: Run Gherkin Test Suite
+          command: |
+            # Execute gherkin tests for given application
             EXAMPLE_APPLICATION_ABSOLUTE_PATH=<<parameters.path >> docker-compose up --build gherkin-test-report
       - checkout 
       - run:
