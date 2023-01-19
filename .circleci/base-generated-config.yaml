@@ -26,7 +26,6 @@ jobs:
             # Execute gherkin tests for given application 
             cd ${CIRCLE_WORKING_DIRECTORY}/test/
             EXAMPLE_APPLICATION_ABSOLUTE_PATH=<<parameters.path >> docker-compose up --build gherkin-test-report
-            cat tests_result/example_result.message
       - checkout 
       - run:
           name: Export test results 
