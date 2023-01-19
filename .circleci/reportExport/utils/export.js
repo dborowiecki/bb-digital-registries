@@ -29,7 +29,7 @@ module.exports = class Export {
         const searchTerm = '{';
         const indexOfFirst = line.indexOf(searchTerm);
         // Message format sometimes have artefacts at start of line
-        const fixedLine = line.substring(indexOfFirst)
+        const fixedLine = line.substring(indexOfFirst);
         items.push(JSON.parse(fixedLine));
       } catch (e) {
         console.error(e);

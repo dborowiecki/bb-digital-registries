@@ -20,9 +20,8 @@ jobs:
           name: Test execution - Example application << parameters.example-app-name >> 
           command: |
             # Execute application test_entrypoint.sh in background. 
-            chmod u+x << parameters.path >>/test_entrypoint.sh
-            cd << parameters.path >> 
-            ./test_entrypoint.sh &        
+            chmod u+x <<parameters.path >>/test_entrypoint.sh
+            cd <<parameters.path >> && ./test_entrypoint.sh     
             
             # Execute gherkin tests for given application 
             cd ${CIRCLE_WORKING_DIRECTORY}/test/
