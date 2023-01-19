@@ -26,6 +26,10 @@ module.exports = class Export {
     // eslint-disable-next-line no-restricted-syntax
     for await (const line of rl) {
       try {
+        const searchTerm = '{';
+        const indexOfFirst = paragraph.indexOf(searchTerm);
+        // Message format sometimes have artefacts at start of line
+        const fixedLine = line.substring(indexOfFirst)
         items.push(JSON.parse(line));
       } catch (e) {
         console.error(e);
