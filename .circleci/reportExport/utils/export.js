@@ -27,7 +27,7 @@ module.exports = class Export {
     for await (const line of rl) {
       try {
         const searchTerm = '{';
-        const indexOfFirst = paragraph.indexOf(searchTerm);
+        const indexOfFirst = line.indexOf(searchTerm);
         // Message format sometimes have artefacts at start of line
         const fixedLine = line.substring(indexOfFirst)
         items.push(JSON.parse(line));
