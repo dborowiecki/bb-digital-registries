@@ -25,8 +25,9 @@ jobs:
             ./test_entrypoint.sh &        
             
             # Execute gherkin tests for given application 
-            cd ~/project/test/
+            cd ${CIRCLE_WORKING_DIRECTORY}/test/
             EXAMPLE_APPLICATION_ABSOLUTE_PATH=<<parameters.path >> docker-compose up --build gherkin-test-report
+            cat /test/tests_result/example_result.message
       - checkout 
       - run:
           name: Export test results 
