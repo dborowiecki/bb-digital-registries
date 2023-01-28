@@ -51,7 +51,7 @@ jobs:
                     -F testApp=${TEST_APP}                \
                     -F sourceBranch=${CIRCLE_BRANCH}      \
                     -H "x-api-key: ${TEST_RESULTS_STORAGE_API_KEY}" \
-                    ${TEST_RESULT_STORAGE_URL}
+                    "${TEST_RESULT_STORAGE_URL}"
 
 
 workflows:
