@@ -26,9 +26,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: |
-            App: << parameters.example-app-name >>
-            Suite: << parameters.test-suite-name >>
+          name: Execute tests
           command: |
             # Execute application test_entrypoint.sh in background.
             chmod u+x <<parameters.path >>/test_entrypoint.sh
