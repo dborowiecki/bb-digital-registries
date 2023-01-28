@@ -5,14 +5,15 @@ jobs:
     parameters:
       example-app-name:
         type: string
-      path:
+      example-app-path:
         type: string
     machine:
       image: ubuntu-2004:current
       docker_layer_caching: true
     environment:
-      BUILDING_BLOCK: digital-registries
-      TEST_SUITE: openAPICompliance
+      BUILDING_BLOCK: $CIRCLE_PROJECT_REPONAME
+      SOURCE_BRANCH: $CIRCLE_BRANCH
+      TEST_SUITE: << parameters.test-suite-name >>
       TEST_APP: << parameters.example-app-name >>
       TEST_RESULT_STORAGE_URL: $TEST_RESULT_STORAGE_URL
       TEST_RESULTS_STORAGE_API_KEY: $TEST_RESULTS_STORAGE_API_KEY
@@ -24,12 +25,12 @@ jobs:
           name: Test execution - Example application << parameters.example-app-name >>
           command: |
             # Execute application test_entrypoint.sh in background.
-            chmod u+x <<parameters.path >>/test_entrypoint.sh
-            cd <<parameters.path >> && ./test_entrypoint.sh
+            chmod u+x <<parameters.example-app-path >>/test_entrypoint.sh
+            cd <<parameters.example-app-path >> && ./test_entrypoint.sh --config=${TEST_SUITE}
 
             # Execute gherkin tests for given application
             cd ${CIRCLE_WORKING_DIRECTORY}/test/
-            EXAMPLE_APPLICATION_ABSOLUTE_PATH=<<parameters.path >> docker-compose up --build gherkin-test-report
+            EXAMPLE_APPLICATION_ABSOLUTE_PATH=<<parameters.example-app-path >> docker-compose up --build gherkin-test-report
       - checkout
       - run:
           name: Export test results
@@ -44,7 +45,7 @@ jobs:
                     -F report=@${TEST_RESULT_REPORT_PATH} \
                     -F testSuite=${TEST_SUITE}            \
                     -F testApp=${TEST_APP}                \
-                    -F sourceBranch=${CIRCLE_BRANCH}      \
+                    -F sourceBranch=${SOURCE_BRANCH}      \
                     -H "x-api-key: ${TEST_RESULTS_STORAGE_API_KEY}" \
                     ${TEST_RESULT_STORAGE_URL}
 
@@ -55,4 +56,4 @@ workflows:
       # This part is replaced programatically by test executions for all example applications
       - test-example:
           name: 'example-application-name'
-          path-info: 'Path to example application directory with test_entrypoint.sh'
+          example-app-path: 'Path to example application directory with test_entrypoint.sh'
