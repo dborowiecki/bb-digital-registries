@@ -45,6 +45,11 @@ jobs:
                 exit 1
             fi
 
+            echo $TEST_RESULT_STORAGE_URL
+            echo ${TEST_RESULT_STORAGE_URL}
+            echo "$TEST_RESULT_STORAGE_URL"
+            echo "${TEST_RESULT_STORAGE_URL}"
+
             curl -v -F buildingBlock=${BUILDING_BLOCK}    \
                     -F report=@${TEST_RESULT_REPORT_PATH} \
                     -F testSuite=${TEST_SUITE}            \
