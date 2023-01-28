@@ -48,7 +48,7 @@ def list_test_executions(example_apps, test_suites):
       'example-app-path': app_path, 'test-suite-name': suite_name, 
       'example-app-name': app_name, 'test-suite-path': suite_path, 
     }
-    test_executions.append({F"{app_name}-{suite_name}": new_example})
+    test_executions.append({F"test-example": new_example})
   return test_executions
 
 
