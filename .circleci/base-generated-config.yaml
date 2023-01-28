@@ -40,7 +40,7 @@ jobs:
           name: Export test results
           command: |
             # API POST call is executed using exported result file and additional execution information as an input
-            if [ -f "$TEST_RESULT_REPORT_PATH" ]; then
+            if ! [ -f "$TEST_RESULT_REPORT_PATH" ]; then
                 echo "Report file has to be available under ${TEST_RESULT_REPORT_PATH} directory"
                 exit 1
             fi
