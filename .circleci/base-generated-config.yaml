@@ -29,12 +29,12 @@ jobs:
           name: Execute tests
           command: |
             # Execute application test_entrypoint.sh in background.
-            chmod u+x <<parameters.path >>/test_entrypoint.sh
-            cd <<parameters.path >> && ./test_entrypoint.sh
+            chmod u+x << parameters.example-app-path >>/test_entrypoint.sh
+            cd << parameters.example-app-path >> && ./test_entrypoint.sh
 
             # Execute gherkin tests for given application
-            cd ${CIRCLE_WORKING_DIRECTORY}/test/
-            EXAMPLE_APPLICATION_ABSOLUTE_PATH=<<parameters.path >> docker-compose up --build gherkin-test-report
+            cd << parameters.test-suite-path >>
+            ./test_entrypoint.sh
       - checkout
       - run:
           name: Export test results
