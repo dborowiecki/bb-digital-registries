@@ -26,15 +26,17 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Test execution - Example application << parameters.example-app-name >>
+          name: |
+            App: << parameters.example-app-name >>
+            Suite: << parameters.test-suite-name >>
           command: |
             # Execute application test_entrypoint.sh in background.
-            chmod u+x <<parameters.example-app-path >>/test_entrypoint.sh
-            cd <<parameters.example-app-path >> && ./test_entrypoint.sh --config=${TEST_SUITE}
+            chmod u+x <<parameters.path >>/test_entrypoint.sh
+            cd <<parameters.path >> && ./test_entrypoint.sh
 
             # Execute gherkin tests for given application
             cd ${CIRCLE_WORKING_DIRECTORY}/test/
-            EXAMPLE_APPLICATION_ABSOLUTE_PATH=<<parameters.example-app-path >> docker-compose up --build gherkin-test-report
+            EXAMPLE_APPLICATION_ABSOLUTE_PATH=<<parameters.path >> docker-compose up --build gherkin-test-report
       - checkout
       - run:
           name: Export test results
@@ -49,7 +51,7 @@ jobs:
                     -F report=@${TEST_RESULT_REPORT_PATH} \
                     -F testSuite=${TEST_SUITE}            \
                     -F testApp=${TEST_APP}                \
-                    -F sourceBranch=${SOURCE_BRANCH}      \
+                    -F sourceBranch=${CIRCLE_BRANCH}      \
                     -H "x-api-key: ${TEST_RESULTS_STORAGE_API_KEY}" \
                     ${TEST_RESULT_STORAGE_URL}
 
