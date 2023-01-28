@@ -7,6 +7,10 @@ jobs:
         type: string
       example-app-path:
         type: string
+      test-suite-name:
+        type: string
+      test-suite-path:
+        type: string
     machine:
       image: ubuntu-2004:current
       docker_layer_caching: true
