@@ -59,5 +59,7 @@ workflows:
     jobs:
       # This part is replaced programatically by test executions for all example applications
       - test-example:
-          name: 'example-application-name'
-          example-app-path: 'Path to example application directory with test_entrypoint.sh'
+          example-app-name: example-application-name
+          example-app-path: path/to/example_application_directory_with_test_entrypoint
+          test-suite-name: example-application-name
+          test-suite-path: path/to/example_application_directory_with_test_entrypoint
