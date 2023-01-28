@@ -57,8 +57,6 @@ with open(base_config) as f:
     
     available_examples = [name for name in pathlib.Path(examples_path).iterdir() if os.path.isdir(name)]
     available_test_suites = [name for name in pathlib.Path(test_suites_path).iterdir() if os.path.isdir(name)]
-
-    examples = []
     circle_config['workflows']['test_everything']['jobs'] = list_test_executions(available_examples, available_test_suites)
 
     with open(generated_config, "w") as w: 
