@@ -36,7 +36,7 @@ jobs:
       - run:
           name: Export test results
           environment:
-            TEST_RESULT_STORAGE_URL: $TEST_RESULT_STORAGE_URL
+            TEST_RESULT_STORAGE_URL: ${TEST_RESULT_STORAGE_URL}
             TEST_RESULTS_STORAGE_API_KEY: TEST_RESULTS_STORAGE_API_KEY
           command: |
             # API POST call is executed using exported result file and additional execution information as an input
