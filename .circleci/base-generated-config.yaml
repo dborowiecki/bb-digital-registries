@@ -21,8 +21,7 @@ jobs:
       TEST_APP: << parameters.example-app-name >>
       TEST_RESULT_STORAGE_URL: $TEST_RESULT_STORAGE_URL
       TEST_RESULTS_STORAGE_API_KEY: $TEST_RESULTS_STORAGE_API_KEY
-      TEST_RESULT_REPORT_PATH: << parameters.test-suite-path >>/example_result.message
-      SOURCE:
+      TEST_RESULT_REPORT_PATH: << parameters.test-suite-path >>/result/example_result.message
     steps:
       - checkout
       - run:
