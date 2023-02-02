@@ -1,6 +1,6 @@
 version: 2.1
+setup: true
 
-# Define a job to be invoked later in a workflow.
 
 orbs:
   test-harness: dborowiecki/testutils@0.1.7
