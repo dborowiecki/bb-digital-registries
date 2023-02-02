@@ -14,5 +14,8 @@ workflows:
                 root: workspace
                 paths:
                   - generated.yml
-      - test-harness/execute-tests
+      - test-harness/execute-tests:
+          requires:
+          - test-harness/create-config
+
 
