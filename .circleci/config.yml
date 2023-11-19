@@ -3,7 +3,7 @@ setup: true
 
 
 orbs:
-  test-harness: dborowiecki/testutils@0.2.3
+  test-harness: dborowiecki/testutils@0.2.4
 
 workflows:
   test_everything:
