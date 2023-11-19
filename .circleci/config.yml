@@ -2,7 +2,7 @@ version: 2.1
 setup: true
 
 orbs:
-  testutils: dborowiecki/testutils@dev
+  testutils: dborowiecki/testutils@0.2.4
 
 workflows:
   test_everything:
