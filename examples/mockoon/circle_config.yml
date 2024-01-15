@@ -3,8 +3,10 @@ before:
     - run:
         name: Send POST Request to FastAPI Endpoint
         command: |
+          ls 
           curl -X POST $API_URL/test -H "Content-Type: application/json" -d "{\"secret\":\"$SECRET_VAR\"}"
-
+          echo "$API_URL" >> test.txt
+          cat test.txt
 after: 
   steps:
   - run:
