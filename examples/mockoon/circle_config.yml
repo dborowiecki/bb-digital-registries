@@ -1,8 +1,9 @@
 before: 
   steps:
-  - run:
-      name: Print Hello World
-      command: echo "Hello World"
+    - run:
+        name: Send POST Request to FastAPI Endpoint
+        command: |
+          curl -X POST $API_URL/test -H "Content-Type: application/json" -d "{\"secret\":\"$SECRET_VAR\"}"
 
 after: 
   steps:
